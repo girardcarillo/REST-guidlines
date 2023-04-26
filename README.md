@@ -3,7 +3,7 @@ You can also do it on your personal machine
 
 We need Root and Geant4 (for simulations with restG4) installed for REST-for-physics installation and use.
 - Root version 6.26/10 is required
-- Geant4 version 11.0.3 is recommended and support will be given with this version. You can decide to use version 10.7 but in case of crash ==we can't give support==.
+- Geant4 version 11.0.3 is recommended and support will be given with this version. You can decide to use version 10.7 but in case of crash **we can't guaranty support**.
 
 The first section explains how to install and use Miniconda in order to get the good versions of Root and Geant4.
 It allows to create environments enclosing the desired versions, without interfering with the version that you may already have installed for other purposes.
@@ -52,7 +52,7 @@ conda create -n <environment_name> geant4==11.0.3
 ```
 This step can take several minutes.
 
-- ==Once it's done you can activate your environement==. This is really important for the installation of Root in the same environement.
+- **Once it's done you can activate your environement**. This is really important for the installation of Root in the same environement.
 
 ```
 conda activate <environment_name>
@@ -135,18 +135,8 @@ If other modules fail, that's not a good sign.
 mkdir build
 cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=~/REST-for-physics/rest-framework/install/master -DREST_ALL_LIBS=ON -DREST_G4=ON -DREST_GARFIELD=OFF -DREST_MPFR=OFF
+make install
 ```
-
-You can check `nproc` at Lyon and use the corresponding number.
-```
-make <-j20> install
-```
-If this number is too high you could have the classic
-```console
-internal compiler error: CPU time limit exceeded signal terminated program cc1plus
-```
-or you could even be kick out of the cluster.
-In this case reconnect if necessary, and just relaunch the `make install` command.
 
 The installation of REST is completed !! :clap:
 
@@ -176,9 +166,24 @@ CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
 
 Install in your conda environement the last version of cmake
 ```
-conda install cmake==3.26.3
+conda install cmake==3.18.4
 ```
+
 And then deactivate and activate again your conda environement for the changes to be updated.
 
 You could also choose to update cmake directly at CC Lyon with apt-get.
 That depends on the requirements of the other softwares you usually run on the cluster.
+
+- when entering a restRoot session, errors at library loading
+```console
+ - /pbs/home/g/girardca/REST-for-physics/rest-framework/install/master/lib/libRestAxion.so
+cling::DynamicLibraryManager::loadLibrary(): /pbs/home/g/girardca/REST-for-physics/rest-framework/install/master/lib/libRestAxion.so: undefined symbol: _ZN23TRestAxionMagneticFieldC1Ev
+```
+
+This could come from a too recent version of cmake.
+Try to downgrade (version 3.18.4 should be working).
+
+- Binary files not appearing after installation
+See [this discussion](https://rest-forum.unizar.es/t/macos-installation-issue-missing-files-headers-bin/573/5)
+
+
