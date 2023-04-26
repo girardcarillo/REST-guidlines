@@ -186,4 +186,14 @@ Try to downgrade (version 3.18.4 should be working).
 - Binary files not appearing after installation
 See [this discussion](https://rest-forum.unizar.es/t/macos-installation-issue-missing-files-headers-bin/573/5)
 
-
+- When trying to simulate with restG4
+```console
+cling::DynamicLibraryManager::loadLibrary(): libgsl.so.25: cannot open shared object file: No such file or directory
+Error in <TInterpreter::TCling::AutoLoad>: failure loading library libMathMore.so for ROOT::Math::GSLIntegrator
+```
+Probably for some reason the gsl library have not been installed properly. Try
+```
+conda install -c conda-forge gsl==2.7
+```
+A priori no need to build or install again REST.
+Just try again the `restG4` command
