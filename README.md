@@ -2,7 +2,7 @@ Here are given the basic steps to install REST-for-physics on the CC IN2P3 clust
 
 We need Root and Geant4 (for simulations with restG4) installed for REST-for-physics installation and use.
 - Root version 6.26/10 is required
-- Geant4 version 11.0.3 is recommended and support will be given with this version. You can decide to use version 10.7 but in case of crash we can't give support.
+- Geant4 version 11.0.3 is recommended and support will be given with this version. You can decide to use version 10.7 but in case of crash ==we can't give support==.
 
 The first section explains how to install and use Miniconda in order to get the good versions of Root and Geant4.
 It allows to create environments enclosing the desired versions, without interfering with the version that you may already have installed for other purposes.
@@ -48,7 +48,7 @@ conda create -n <environment_name> geant4==11.0.3
 ```
 This step can take several minutes.
 
-- Once it's done you can activate your environement. This is really important for the installation of Root in the same environement.
+- ==Once it's done you can activate your environement==. This is really important for the installation of Root in the same environement.
 
 ```
 conda activate <environment_name>
@@ -106,7 +106,7 @@ Now we have the right versions of Root and Geant4, let's install REST.
 ## Instruction for installing REST at ~/
 
 > Careful: 
-> - Please change the path to your corresponding repository!
+> - Please adapt the path to your corresponding repository!
 > - If not already done, first activate the conda environement we just created by doing `conda activate <environment_name>` 
 
 ```
