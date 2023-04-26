@@ -1,4 +1,5 @@
 Here are given the basic steps to install REST-for-physics on the CC IN2P3 cluster.
+You can also do it ion your personal machine
 
 We need Root and Geant4 (for simulations with restG4) installed for REST-for-physics installation and use.
 - Root version 6.26/10 is required
@@ -75,7 +76,7 @@ Time for coffee :coffee:
 > Otherwise this step can take hours.
 
 
-## Troubleshooting
+## Troubleshooting :boom:
 
 - packages not found
 >
@@ -100,6 +101,7 @@ have to set up in the bashrc or zshrc
 
 Now we have the right versions of Root and Geant4, let's install REST.
 
+- REST [user's guide](https://rest-for-physics.github.io/)
 - [Useful slides](https://indico.capa.unizar.es/event/26/timetable/?view=standard) for installation
 - [REST-for-physics github page](https://github.com/rest-for-physics)
 
@@ -109,6 +111,8 @@ Now we have the right versions of Root and Geant4, let's install REST.
 > - Please adapt the path to your corresponding repository!
 > - If not already done, first activate the conda environement we just created by doing `conda activate <environment_name>` 
 
+1. Clone the Github repository
+
 ```
 cd ~/
 mkdir REST-for-physics
@@ -117,14 +121,61 @@ mkdir rest-framework
 cd rest-framework
 git clone https://github.com/rest-for-physics/framework.git .
 python pull-submodules.py –latest:master
-cmake .. -DCMAKE_INSTALL_PREFIX=~/REST-for-physics/rest-framework/install/master -DREST_ALL_LIBS=ON -DREST_G4=ON -DREST_GARFIELD=OFF -DREST_MPFR=OFF
-make <-j8> install
 ```
 
-## Troubleshooting
+At this step probably some submodules will failed.
+If only iaxo and detector-template fail, that's normal. 
+If other modules fail, that's not a good sign.
 
-- If crash with mpfr library
+2. Then build and install the project 
+```
+mkdir build
+cd build
+cmake .. -DCMAKE_INSTALL_PREFIX=~/REST-for-physics/rest-framework/install/master -DREST_ALL_LIBS=ON -DREST_G4=ON -DREST_GARFIELD=OFF -DREST_MPFR=OFF
+```
+
+You can check `nproc` at Lyon and use the corresponding number.
+```
+make <-j20> install
+```
+If this number is too high you could have the classic
+```console
+internal compiler error: CPU time limit exceeded signal terminated program cc1plus
+```
+or you could even be kick out of the cluster.
+In this case reconnect if necessary, and just relaunch the `make install` command.
+
+The installation of REST is completed !! :clap:
+
+# Using REST
+
+Know you can source REST by doing
+```
+source <path_to_REST>/REST-for-physics/rest-framework/install/master/thisREST.sh
+```
+You can write this line in you .bashrc if needed.
+
+Have fun!
+
+## Troubleshooting :boom:
+
+- If there is a crash with the mpfr library, you can install it in the same environement:
 ```
 conda install mpfr
 ```
 
+- A problem with the cmake version at Lyon
+
+```console
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 3.16 or higher is required.  You are running version 2.8.12.2
+```
+
+Install in your conda environement the last version of cmake
+```
+conda install cmake==3.26.3
+```
+And then deactivate and activate again your conda environement for the changes to be updated.
+
+You could also choose to update cmake directly at CC Lyon with apt-get.
+That depends on the requirements of the other softwares you usually run on the cluster.
