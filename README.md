@@ -1,5 +1,5 @@
 Here are given the basic steps to install REST-for-physics on the CC IN2P3 cluster.
-You can also do it ion your personal machine
+You can also do it on your personal machine
 
 We need Root and Geant4 (for simulations with restG4) installed for REST-for-physics installation and use.
 - Root version 6.26/10 is required
@@ -8,6 +8,9 @@ We need Root and Geant4 (for simulations with restG4) installed for REST-for-phy
 The first section explains how to install and use Miniconda in order to get the good versions of Root and Geant4.
 It allows to create environments enclosing the desired versions, without interfering with the version that you may already have installed for other purposes.
 This step is not mandatory, and you can directly go to the [REST-for-physics installation step.](#installing-rest-for-physics)
+
+For any problem with the installation of REST, please see the [REST-for-physics forum](https://rest-forum.unizar.es/), or the [Github page](https://github.com/rest-for-physics).
+Also, if you encounter any problem which is not listed in the troubleshooting sections of this document, please report your problem (and possible solution) [here](https://github.com/girardcarillo/REST-guidlines/issues), for improvement of this documentation. 
 
 # Installing Miniconda
 
@@ -95,7 +98,7 @@ conda config --set channel_priority strict
 ```console
 command not found: conda
 ```
-have to set up in the bashrc or zshrc
+You have to set up conda with `conda init <shell>` or create a conda command corresponding to `miniconda3/bin/conda` in the .bashrc or other shell.
 
 # Installing REST-for-physics
 
@@ -159,7 +162,7 @@ Have fun!
 
 ## Troubleshooting :boom:
 
-- If there is a crash with the mpfr library, you can install it in the same environement:
+- At the make step, if there is a crash with the mpfr library, you can install it in the same environement:
 ```
 conda install mpfr
 ```
