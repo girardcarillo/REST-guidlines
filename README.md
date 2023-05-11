@@ -27,39 +27,39 @@ For that see the 2nd section.
 
 # Using REST @CCIN2P3
 
-1. Initializing conda
+## Initializing conda
 
 Conda is an open-source package management system and environment management system.
 For the moment we will use this tool at CCIN2P3 to all work on common version of Root and Geant4.
 This may change, following the recent discussion about Singularity.
 
-Miniconda has already been install here `/pbs/throng/liquido`.
+Miniconda has already been installed here `/pbs/throng/liquido`.
 This step allows to set conda in your bashrc.
 
-> REST-for-physics has been deployed @CCIN2P3 using these common version of Root and Geant4.
-> Then REST will most probably run correctly only using these versions.
-> If you try to run REST with other versions than the one it has been installed with, so guarantee can be given.
+> REST-for-physics has been deployed @CCIN2P3 using these common versions of Root and Geant4.
+> REST will most probably run correctly only using these versions.
+> If you try to run REST with other versions than the one it has been installed with, no guarantee can be given.
 
-To activate the common LiquidO conda environement (containing common version of Root and Geant4):
+To initialize conda in your .bashrc.
 
 ```
 /pbs/throng/liquido/miniconda3/bin/conda init bash
 ```
 
-This will write the initialization of conda in your .bashrc
-
-It's important to initiate conda in the shell you will use for work.
+It's important to initiate conda in the shell (bash, zsh...) you will use for work.
 If, at one point, you decide to change your shell, you will have to run this command again with your new shell. 
 
 You can open a new bash session for the changes to be active.
 
-2. Activating the common conda environement for LiquidO
+## Activating the common conda environement for LiquidO
+
+To activate the common LiquidO conda environement (containing common version of Root and Geant4):
 
 ```
 conda activate liquido_install
 ```
 
-3. Make sure that the good version of Root and Geant4 are being used
+## Make sure that the good version of Root and Geant4 are being used
 
 ```
 root-config --version
@@ -70,7 +70,7 @@ geant4-config --version
 ```
 should give you 11.0.3.
 
-4. Acivating the common installation of REST
+## Activating the common installation of REST
 
 ```
 source /pbs/throng/liquido/REST-for-physics/rest-framework/install/master/thisREST.sh
@@ -80,9 +80,9 @@ There is also a `thisREST.csh` at the same location.
 
 # On your personal machine
 
-This section is for people that would have their own installation of REST-for-physics, for development for example.
+This section is for people that would like to have their own installation of REST-for-physics, for example for development purpose.
 
-We need Root and Geant4 (for simulations with restG4) installed, to install and use REST-for-physics.
+We need Root and Geant4 (for simulations with restG4), in order to install and use REST-for-physics.
 - Root version 6.26/10 is required
 - Geant4 version 11.0.3 is recommended and support will be given with this version. You can decide to use version 10.7 but in case of crash **we can't guaranty support**.
 
@@ -117,16 +117,18 @@ miniconda3/bin/conda init <shell_name>
 
 ## Creating environment
 
-1. Creating an environment with the right version of Geant4. [Some help](https://github.com/conda-forge/geant4-feedstock) for installing Geant4 with conda.
+1. Creating an environment with the right version of Geant4. 
 
-- For that we need the conda-forge channel
+If you need extra information, here is [some help](https://github.com/conda-forge/geant4-feedstock) for installing Geant4 with conda.
+
+- We need the conda-forge channel
 
 ```
 conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-- Now we can create our environement that will eventually contain geant4 and Root.
+- Now we can create our environement that will eventually contain Geant4 and Root.
 
 ```
 conda create -n <environment_name> geant4==11.0.3
