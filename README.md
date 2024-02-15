@@ -152,7 +152,7 @@ conda config --set channel_priority false
 - Now we can install Root
 
 ```
-conda install root==6.26.10
+conda install root==6.26.14
 ```
 
 This step can take several minutes, even half an hour.
