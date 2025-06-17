@@ -114,6 +114,22 @@ Then follow the instruction on your console.
 ```
 miniconda3/bin/conda init <shell_name>
 ```
+Try the command
+```
+conda --version
+```
+If you get an error like 
+```console
+conda: command not found...
+```
+Then try
+```
+source miniconda3/etc/profile.d/conda.sh
+```
+If you want to prevent conda from activateing a default `base` environement, do
+```
+conda config --set auto_activate_base false
+```
 
 ## Creating environment
 
